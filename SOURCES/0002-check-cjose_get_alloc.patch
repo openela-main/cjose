@@ -1,0 +1,25 @@
+commit 54d449473b21e93805070264791e80f84f601b4d
+Author: Hans Zandbelt <hans.zandbelt@zmartzone.eu>
+Date:   Tue Apr 5 20:51:20 2022 +0200
+
+    check result of cek = cjose_get_alloc()(cek_len) in jwe.c
+    
+    see: https://github.com/cisco/cjose/issues/110
+    
+    Signed-off-by: Hans Zandbelt <hans.zandbelt@zmartzone.eu>
+
+diff --git a/src/jwe.c b/src/jwe.c
+index 4285097..157ddec 100644
+--- a/src/jwe.c
++++ b/src/jwe.c
+@@ -2064,6 +2064,10 @@ uint8_t *cjose_jwe_decrypt_multi(cjose_jwe_t *jwe, cjose_key_locator key_locator
+         {
+             cek_len = jwe->cek_len;
+             cek = cjose_get_alloc()(cek_len);
++            if (!cek) {
++               CJOSE_ERROR(err, CJOSE_ERR_NO_MEMORY);
++               return NULL;
++            }
+             memcpy(cek, jwe->cek, cek_len);
+         }
+         else
