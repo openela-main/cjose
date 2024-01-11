@@ -1,0 +1,53 @@
+From b339a18aa06c78d64ac33d891d400eac7b86fff3 Mon Sep 17 00:00:00 2001
+From: Jakub Hrozek <jhrozek@redhat.com>
+Date: Mon, 17 May 2021 13:30:24 +0200
+Subject: [PATCH] Define OPENSSL_API_COMPAT to 0x10101000L
+
+---
+ src/jwe.c | 2 ++
+ src/jwk.c | 2 ++
+ src/jws.c | 2 ++
+ 3 files changed, 6 insertions(+)
+
+diff --git a/src/jwe.c b/src/jwe.c
+index 822d408..d6f3149 100644
+--- a/src/jwe.c
++++ b/src/jwe.c
+@@ -5,6 +5,8 @@
+  * Copyright (c) 2014-2016 Cisco Systems, Inc.  All Rights Reserved.
+  */
+ 
++#define OPENSSL_API_COMPAT 0x10101000L
++
+ #include <cjose/base64.h>
+ #include <cjose/header.h>
+ #include <cjose/jwe.h>
+diff --git a/src/jwk.c b/src/jwk.c
+index 860f0e7..87408e9 100644
+--- a/src/jwk.c
++++ b/src/jwk.c
+@@ -5,6 +5,8 @@
+  * Copyright (c) 2014-2016 Cisco Systems, Inc.  All Rights Reserved.
+  */
+ 
++#define OPENSSL_API_COMPAT 0x10101000L
++
+ #include "include/jwk_int.h"
+ #include "include/util_int.h"
+ 
+diff --git a/src/jws.c b/src/jws.c
+index 4e03554..9d682a0 100644
+--- a/src/jws.c
++++ b/src/jws.c
+@@ -5,6 +5,8 @@
+  * Copyright (c) 2014-2016 Cisco Systems, Inc.  All Rights Reserved.
+  */
+ 
++#define OPENSSL_API_COMPAT 0x10101000L
++
+ #include <cjose/base64.h>
+ #include <cjose/header.h>
+ #include <cjose/jws.h>
+-- 
+2.31.1
+
