@@ -1,6 +1,6 @@
 Name:           cjose
 Version:        0.6.1
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        C library implementing the Javascript Object Signing and Encryption (JOSE)
 
 License:        MIT
@@ -66,10 +66,14 @@ make check || (cat test/test-suite.log; exit 1)
 
 
 %changelog
-* Wed Jul 19 2023 Tomas Halman <thalman@redhat.com> - 0.6.1-3
-- cjose: AES GCM decryption uses the Tag length from the actual Authentication
-  Tag provided in the JWE [rhel-8.8.0.z]
-  Resolves: rhbz#2223491
+* Wed Jul 19 2023 <thalman@redhat.com> - 0.6.1-4
+- CVE-2023-37464 cjose: AES GCM decryption uses the Tag length from the actual
+  Authentication Tag provided in the JWE
+  Resolves: rhbz#2223308
+
+* Fri Mar 17 2023 <thalman@redhat.com> - 0.6.1-3
+- Random memory override
+  Resolves: rhbz#2072469
 
 * Thu Aug  2 2018  <jdennis@redhat.com> - 0.6.1-2
 - fix concatkdf big endian architecture problem.
