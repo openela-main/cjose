@@ -1,6 +1,6 @@
 Name:           cjose
 Version:        0.6.1
-Release:        16%{?dist}
+Release:        17%{?dist}
 Summary:        C library implementing the Javascript Object Signing and Encryption (JOSE)
 
 License:        MIT
@@ -66,6 +66,10 @@ make check || (cat test/test-suite.log; exit 1)
 
 
 %changelog
+* Tue May 14 2024 <thalman@redhat.com> - 0.6.1-17
+- Publishing cjose devel package
+  Resolves: RHEL-18066
+
 * Wed Jul 19 2023 <thalman@redhat.com> - 0.6.1-16
 - CVE-2023-37464 cjose: AES GCM decryption uses the Tag length from the actual
   Authentication Tag provided in the JWE
