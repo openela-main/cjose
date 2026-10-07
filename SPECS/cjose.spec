@@ -1,6 +1,6 @@
 Name:           cjose
 Version:        0.6.1
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        C library implementing the Javascript Object Signing and Encryption (JOSE)
 
 License:        MIT
@@ -10,6 +10,7 @@ Source0:  	https://github.com/cisco/%{name}/archive/%{version}/%{name}-%{version
 Patch1: concatkdf.patch
 Patch2: 0002-check-cjose_get_alloc.patch
 Patch3: 0003-CVE-2023-37464.patch
+Patch4: 0004-CVE-2026-53938.patch
 
 BuildRequires:  gcc
 BuildRequires:  doxygen
@@ -66,6 +67,10 @@ make check || (cat test/test-suite.log; exit 1)
 
 
 %changelog
+* Fri Sep 11 2026 <thalman@redhat.com> - 0.6.1-5
+- CVE-2026-53938 cjose: heap buffer overflow in AES key unwrap
+  Resolves: RHEL-256961
+
 * Wed Jul 19 2023 <thalman@redhat.com> - 0.6.1-4
 - CVE-2023-37464 cjose: AES GCM decryption uses the Tag length from the actual
   Authentication Tag provided in the JWE
