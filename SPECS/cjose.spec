@@ -1,6 +1,6 @@
 Name:           cjose
 Version:        0.6.1
-Release:        17%{?dist}.2
+Release:        18%{?dist}
 Summary:        C library implementing the Javascript Object Signing and Encryption (JOSE)
 
 License:        MIT
@@ -11,10 +11,7 @@ Patch1: concatkdf.patch
 Patch2: 0001-Define-OPENSSL_API_COMPAT-to-0x10101000L.patch
 Patch3: 0002-check-cjose_get_alloc.patch
 Patch4: 0003-CVE-2023-37464.patch
-# https://github.com/OpenIDC/cjose/commit/8c51d245273583a658f24ef7b08ba22f848a34a5
 Patch5: 0004-CVE-2026-53938.patch
-# https://github.com/OpenIDC/cjose/commit/2a6e5bd969fa20059fb00913fb9f57d77ea6a4d9
-Patch6: 0005-CVE-2026-53939.patch
 
 BuildRequires:  gcc
 BuildRequires:  doxygen
@@ -70,14 +67,10 @@ make check || (cat test/test-suite.log; exit 1)
 
 
 %changelog
-* Tue Oct 20 2026 RHEL Packaging Agent <redhat-ymir-agent@redhat.com> - 0.6.1-17.2
-- CVE-2026-53939 cjose: OpenIDC/cjose uses all-zero Content Encryption Key for AES-CBC-HMAC JWE encryption
-  Encryption Key for AES-CBC-HMAC JWE encryption
-  Resolves: RHEL-287912
-
-* Wed Sep 09 2026 RHEL Packaging Agent <redhat-ymir-agent@redhat.com> - 0.6.1-17.1
-- CVE-2026-53938 cjose: heap buffer overflow in AES key unwrap
-  Resolves: RHEL-256972
+* Tue Sep 15 2026 Tomas Halman <thalman@redhat.com> - 0.6.1-18
+- CVE-2026-53938 Heap buffer overflow in AES Key Wrap decryption leads to
+  denial of service
+  Resolves: RHEL-256973
 
 * Tue May 14 2024 <thalman@redhat.com> - 0.6.1-17
 - Publishing cjose devel package
