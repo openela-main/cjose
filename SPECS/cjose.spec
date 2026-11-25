@@ -1,6 +1,6 @@
 Name:           cjose
 Version:        0.6.1
-Release:        18%{?dist}
+Release:        18%{?dist}.1
 Summary:        C library implementing the Javascript Object Signing and Encryption (JOSE)
 
 License:        MIT
@@ -12,6 +12,8 @@ Patch2: 0001-Define-OPENSSL_API_COMPAT-to-0x10101000L.patch
 Patch3: 0002-check-cjose_get_alloc.patch
 Patch4: 0003-CVE-2023-37464.patch
 Patch5: 0004-CVE-2026-53938.patch
+# https://github.com/OpenIDC/cjose/commit/3b649939c3db4ac6a7eab48034ea9285ef8ff954
+Patch6: 0005-CVE-2026-53939.patch
 
 BuildRequires:  gcc
 BuildRequires:  doxygen
@@ -67,6 +69,11 @@ make check || (cat test/test-suite.log; exit 1)
 
 
 %changelog
+* Tue Oct 20 2026 RHEL Packaging Agent <redhat-ymir-agent@redhat.com> - 0.6.1-18.1
+- CVE-2026-53939 cjose: OpenIDC/cjose uses all-zero Content Encryption Key for AES-CBC-HMAC JWE encryption
+  Key for AES-CBC-HMAC JWE encryption
+  Resolves: RHEL-287907
+
 * Tue Sep 15 2026 Tomas Halman <thalman@redhat.com> - 0.6.1-18
 - CVE-2026-53938 Heap buffer overflow in AES Key Wrap decryption leads to
   denial of service
